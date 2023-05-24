@@ -6,13 +6,34 @@ import re
 from sklearn.metrics.pairwise import cosine_similarity
 
 from fastapi import FastAPI
+import requests
+
 app = FastAPI()
 
-with open(r"E:\Almabetter\Capstone Project\br\tfidf_vectorizer.pkl",'rb') as file:
+file_url = 'https://drive.google.com/uc?id=1y0ZAhithrrdK4x-KA1hHRplmGtedH3Wu'
+
+response = requests.get(file_url)
+
+with open('file.pkl', 'wb') as file:
+    file.write(response.content)
+with open('file.pkl','rb') as file:
     data= pickle.load(file)
-with open(r"E:\Almabetter\Capstone Project\br\transformed_data.pkl",'rb') as file:
+
+tf_url = "https://drive.google.com/uc?id=1GS80yU1uByRfSFosloXKmJ-0NhVEqJpG"
+response1 = requests.get(tf_url)
+
+with open('tf.pkl', 'wb') as file:
+    file.write(response1.content)
+with open('tf.pkl','rb') as file:
     tfidf= pickle.load(file)
-with open(r"E:\Almabetter\Capstone Project\br\item.pkl",'rb') as file:
+
+it_url = 'https://drive.google.com/uc?id=1Atnr2xRdL3FUxkdlQqC2tIVJVEkBOjKp'
+
+response = requests.get(it_url)
+
+with open('item.pkl', 'wb') as file:
+    file.write(response.content)
+with open(r"item.pkl",'rb') as file:
     Item_based= pickle.load(file)
 
 
